@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts"},
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Viviane-SSilva/legal-system-.git"
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/Viviane-SSilva/legal-system-#readme",
   "description": "",
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.6.0",
