@@ -16,4 +16,7 @@ model Cliente {
   id Int @id @default(autoincrement())
   name String
   cpf Int @unique
+
+  @@map("clientes")
+
 }
