@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev2": "tsx src/repositories/ClientRepo.memorysafe.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts"
@@ -34,6 +35,8 @@
     "@prisma/client": "^7.8.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "tsc": "^2.0.4",
+    "tsx": "^4.22.0"
   }
 }

@@ -6,9 +6,11 @@
     "outDir": "./dist",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "commonjs",
+    "module": "Node16",
+    "moduleResolution": "Node16",           // <- Atualizado para node16 (padrão moderno e seguro)
     "target": "es2020",
     "types": [],
     // For nodejs:
@@ -44,6 +46,6 @@
   "exclude": [
     "node_modules",
     "prisma-config.ts",
-    "dist",
+    "dist"
   ]
 }
