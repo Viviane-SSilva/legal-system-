@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev2": "tsx src/repositories/ClientRepo.memorysafe.ts",
     "test": "jest",
     "test:watch": "jest --watch",
-    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts"},
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Viviane-SSilva/legal-system-.git"
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/Viviane-SSilva/legal-system-#readme",
   "description": "",
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.6.0",
@@ -32,6 +35,8 @@
     "@prisma/client": "^7.8.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "tsc": "^2.0.4",
+    "tsx": "^4.22.0"
   }
 }
