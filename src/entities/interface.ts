@@ -2,11 +2,13 @@ export interface ICliente {
     id: number;
     nome: string;
     cpf: string;
+    email: string;
+    telefone?: string | undefined;
 }
 
 
 export interface IContratanteRepository {
 
-    create(id: number, nome: string, cpf: string): Promise<ICliente>
+    create( nome: string, cpf: string, email: string, telefone?: string): Promise<ICliente>
 
 }
