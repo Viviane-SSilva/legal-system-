@@ -4,6 +4,8 @@ interface Cliente {
     id: number;
     nome: string;
     cpf: string;
+    email: string;
+    telefone?: string | undefined
 }
 
 
@@ -19,16 +21,25 @@ export class RepositorioClienteMemorySafe implements IContratanteRepository {
 
     }
 
-    async create(id: number, nome: string, cpf: string): Promise<ICliente> {
+    async create(
+        nome: string, 
+        cpf: string, 
+        email: string, 
+        telefone?: string | undefined
+    ): Promise<ICliente> {
 
-        this.clientes.set(id, { nome, cpf})
+        const id = this.clientes.size + 1;
 
-        const response: Cliente = this.clientes.get(id);
+        this.clientes.set(id, { id, nome, cpf, email, telefone })
 
-        return{
-            id,
-            nome: response.nome,
-            cpf: response.cpf
+        const novoCliente: Cliente = this.clientes.get(id);
+
+        return {
+            id: novoCliente.id,
+            nome: novoCliente.nome,
+            cpf: novoCliente.cpf,
+            email: novoCliente.email,
+            telefone: novoCliente.telefone
         }
     }
 }
