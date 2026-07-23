@@ -3,13 +3,17 @@ import { IContratanteRepository } from "../interface";
 
 interface RegisterContratanteRequest {
       nome: string,
-      cpf: string
+      cpf: string,
+      email: string,
+      telefone?: string
 }
 
 interface RegisterContratanteResponse {
     id: number,
     nome: string,
-    cpf: string
+    cpf: string,
+    email: string,
+    telefone?: string | undefined
 }
 
 export class RegisterContratanteUseCase {
@@ -18,20 +22,28 @@ export class RegisterContratanteUseCase {
 
 	async execute({
         nome,
-        cpf
+        cpf,
+        email,
+        telefone
 	
 	}: RegisterContratanteRequest): Promise<RegisterContratanteResponse | null> {
 
-    if (nome === undefined || nome == null || nome == ""){
+    if (!nome  || !cpf || !email){
         return null
     }
 
-	const response = await this.registerContratante.create(id, nome, cpf);
+	const response = await this.registerContratante.create( 
+        nome, 
+        cpf, 
+        email, 
+        telefone);
 		
     return {
 			id: response.id,
             nome: response.nome,
-            cpf: response.cpf
+            cpf: response.cpf,
+            email: response.email,
+            telefone: response.telefone
 		};
 	}
 
