@@ -2,62 +2,51 @@
 import { beforeEach, expect, describe, test } from '@jest/globals';
 import { RegisterContratanteUseCase } from './register-contratante.usecase';
 import { RepositorioClienteMemorySafe } from '../../repositories/ClientRepo.memorysafe';
-import { ICliente } from '../interface';
 
 describe('ContratanteUseCase', () => {
- 
-  beforeEach(() => {
-    //repo = new CarrinhoRepo();
+  let repo: RepositorioClienteMemorySafe;
+  let useCase: RegisterContratanteUseCase;
+
+  beforeEach(()  => {
+    repo = new RepositorioClienteMemorySafe();
+    useCase = new RegisterContratanteUseCase(repo);
   });
 
   test('deve registrar um cliente', async () => {
+    const dadosCliente = {
+      nome: "viviane",
+      cpf: "0526662",
+      email: "viviane@email.com",
+      telefone:"1199999999"
+    };
 
-    const Repo = new RepositorioClienteMemorySafe();
+    const clienteCriado = await useCase.execute(dadosCliente);
 
-    const UseCase = new RegisterContratanteUseCase(Repo);
-
-    const Cliente: ICliente = { 
-        id: 1,
-        nome: "viviane",
-        cpf: "0526662"
-    }
-
-    const idCliente = await UseCase.execute(Cliente);
-
-    
-    expect(1).toBe(idCliente?.id);
-
+    expect(clienteCriado).not.toBeNull();
+    expect(clienteCriado?.id).toBe(1);
+    expect(clienteCriado?.nome).toBe("viviane");
   });
 
   test('O nome deve ser válido', async () => {
+    const clienteValido = {
+      nome: "Viviane",
+      cpf: "12345678900",
+      email: "viviane@email.com"
+    };
 
-    const Repo = new RepositorioClienteMemorySafe();
+    const clienteInvalido = {
+      nome:"",
+      cpf: "12345678900",
+      email: "invalido@email.com"
+    };
 
-    const UseCase = new RegisterContratanteUseCase(Repo);
+    const resultadoValido = await useCase.execute(clienteValido);
+    const resultadoInvalido = await useCase.execute(clienteInvalido);
 
-    const Cliente: ICliente = { 
-        id: 1,
-        nome: "Viviane",
-        cpf: ""
-    }
-
-     const ClienteInvalido: ICliente = { 
-        id: 1,
-        nome: "",
-        cpf: ""
-    }
-
-    const idCliente = await UseCase.execute(Cliente);
-
-    const NomeClienteInvalido = await UseCase.execute(ClienteInvalido);
-
-    
-    expect("Viviane").toBe(idCliente?.nome);
-    expect(NomeClienteInvalido).toBeNull();
-    
-
+    expect(resultadoValido?.nome).toBe("Viviane");
+    expect(resultadoInvalido).toBeNull();
   });
-
-
-
 });
+
+
+
