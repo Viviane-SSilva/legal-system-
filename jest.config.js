@@ -1,11 +1,7 @@
-const { createDefaultPreset } = require("ts-jest");
-
-const tsJestTransformCfg = createDefaultPreset().transform;
-
-/** @type {import("jest").Config} **/
-module.exports = {
-  testEnvironment: "node",
-  transform: {
-    ...tsJestTransformCfg,
-  },
+export default {
+  testEnvironment: './prisma/prisma-environment-jest.js',
+  verbose: true,
+  transform: {'^.+\\.tsx?$':'ts-jest'},
+  moduleFileExtensions: ['js', 'json', 'ts'],
+  testMatch: ['**/test/**/*.test.ts'],
 };
