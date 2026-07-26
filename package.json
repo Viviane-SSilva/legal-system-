@@ -6,7 +6,7 @@
   "scripts": {
     "dev2": "tsx src/repositories/ClientRepo.memorysafe.ts",
     "test": "jest",
-    "test:e2e": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:e2e": "prisma generate && node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "jest --watch",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts"
   },
@@ -27,6 +27,7 @@
     "@types/express": "^5.0.6",
     "@types/jest": "30.0.0",
     "@types/node": "^25.6.0",
+    "@types/pg": "8.20.0",
     "jest": "30.4.2",
     "prisma": "^7.8.0",
     "ts-jest": "29.4.12",
@@ -34,7 +35,8 @@
     "typescript": "^6.0.3"
   },
   "dependencies": {
-    "@prisma/client": "^7.8.0",
+    "@prisma/adapter-pg": "7.9.0",
+    "@prisma/client": "7.9.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",

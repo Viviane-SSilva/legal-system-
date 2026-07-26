@@ -10,7 +10,7 @@ interface RegisterContratanteRequest {
 
 interface RegisterContratanteResponse {
     id: number,
-    nome: string,
+    name: string,
     cpf: string,
     email: string,
     telefone?: string | undefined
@@ -40,7 +40,7 @@ export class RegisterContratanteUseCase {
 		
     return {
 			id: response.id,
-            nome: response.nome,
+            name: response.name,
             cpf: response.cpf,
             email: response.email,
             telefone: response.telefone
