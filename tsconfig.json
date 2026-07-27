@@ -9,8 +9,8 @@
     
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "commonjs",
-    "moduleResolution": "node16",           // <- Atualizado para node16 (padrão moderno e seguro)
+    "module": "nodenext",
+    "moduleResolution": "nodenext",           // <- Atualizado para node16 (padrão moderno e seguro)
     "target": "es2022",
     "types": [],
     // For nodejs:
