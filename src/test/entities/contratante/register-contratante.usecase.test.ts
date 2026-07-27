@@ -1,21 +1,27 @@
 
 import { beforeEach, expect, describe, test } from '@jest/globals';
-import { RepositorioClientePrisma } from '../../../repositories/clientRepo.prisma.ts';
-import { RegisterContratanteUseCase } from '../../../entities/contratante/register-contratante.usecase.ts';
+import { RepositorioClientePrisma } from '../../../repositories/clientRepo.prisma.js';
+import { RegisterContratanteUseCase } from '../../../entities/contratante/register-contratante.usecase.js';
+import { prisma } from '../../../lib/prisma.js';
 
 describe('ContratanteUseCase', () => {
   let repo: RepositorioClientePrisma;
   let useCase: RegisterContratanteUseCase;
 
-  beforeEach(()  => {
+  beforeEach( async ()  => {
+
+    await prisma.cliente.deleteMany();
     repo = new RepositorioClientePrisma();
     useCase = new RegisterContratanteUseCase(repo);
   });
 
   test('deve registrar um cliente', async () => {
+
+    const sufixo = Date.now();
+
     const dadosCliente = {
       nome: "viviane",
-      cpf: "052666256",
+      cpf: `${sufixo}`.slice(-11),
       email: "kleysonpeste@email.com",
       telefone:"1199999999"
     };
@@ -23,7 +29,7 @@ describe('ContratanteUseCase', () => {
     const clienteCriado = await useCase.execute(dadosCliente);
 
     expect(clienteCriado).not.toBeNull();
-    expect(clienteCriado?.id).toBe(9);
+    expect(clienteCriado?.id).toBeDefined();
     expect(clienteCriado?.name).toBe("viviane");
   });
 
@@ -43,7 +49,7 @@ describe('ContratanteUseCase', () => {
     const resultadoValido = await useCase.execute(clienteValido);
     const resultadoInvalido = await useCase.execute(clienteInvalido);
 
-    expect(resultadoValido?.nome).toBe("Viviane");
+    expect(resultadoValido?.name).toBe("Viviane");
     expect(resultadoInvalido).toBeNull();
   });
 });
