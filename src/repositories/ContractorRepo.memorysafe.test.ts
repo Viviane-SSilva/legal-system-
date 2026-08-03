@@ -1,13 +1,13 @@
 
 import { beforeEach, expect, describe, test } from '@jest/globals';
-import { RepositorioClienteMemorySafe } from './ClientRepo.memorysafe';
+import { RepositoryContractorMemorySafe } from './ContractorRepo.memorysafe.js';
 
 describe('ClientRepo Memory Safe', () => {
 
-  let repo: RepositorioClienteMemorySafe;
+  let repo: RepositoryContractorMemorySafe;
  
   beforeEach(() => {
-     repo = new RepositorioClienteMemorySafe();
+     repo = new RepositoryContractorMemorySafe();
   });
 
   test('deve registrar um cliente com sucesso e retornar o ID',async () => {
@@ -20,7 +20,7 @@ describe('ClientRepo Memory Safe', () => {
 
     expect(novoCliente).toHaveProperty("id");
     expect(novoCliente.id).toBe(1);
-    expect(novoCliente.nome).toBe("Viviane");
+    expect(novoCliente.name).toBe("Viviane");
     expect(novoCliente.cpf).toBe("12345678900");
   });
 

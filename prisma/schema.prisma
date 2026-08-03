@@ -12,14 +12,14 @@ datasource db {
   provider = "postgresql"
 }
 
-model Cliente {
+model Contractor {
   id Int @id @default(autoincrement())
   name String
   cpf String   @unique
   email String @unique
-  telefone String? 
+  phone String? 
   createdAt  DateTime  @default(now()) @map("created_at")
 
-  @@map("clientes")
+  @@map("contractors")
 
 }
