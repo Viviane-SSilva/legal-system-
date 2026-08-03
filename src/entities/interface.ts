@@ -1,14 +1,14 @@
-export interface ICliente {
+export interface IContractor {
     id: number;
-    nome: string;
+    name: string;
     cpf: string;
     email: string;
-    telefone?: string | undefined;
+    phone?: string | null;
 }
 
 
-export interface IContratanteRepository {
+export interface IContractorRepository {
 
-    create( nome: string, cpf: string, email: string, telefone?: string): Promise<ICliente>
+    create( name: string, cpf: string, email: string, phone?: string): Promise<IContractor>
 
 }
